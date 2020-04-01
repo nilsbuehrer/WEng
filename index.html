@@ -3,6 +3,7 @@
   <head>
     <title>woane.ch</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&family=Source+Serif+Pro:wght@700&display=swap" rel="stylesheet">
   </head>
@@ -10,60 +11,31 @@
     <div class="container">
       <header class="hdr">
         <div class="social">
-          <img class="social__logo" src="./assets/facbook.png" />
-          <img class="social__logo" src="./assets/instagram.png" />
-          <img class="social__logo" src="./assets/twitter.png" />
+          <img class="social__logo" src="assets/img/facbook.png" />
+          <img class="social__logo" src="assets/img/instagram.png" />
+          <img class="social__logo" src="assets/img/twitter.png" />
         </div>
-        <h1 class="hdr__title">woane.ch</h1>
         <div>
           <a>Registrieren</a>
           <a>Log In</a>
         </div>
       </header>
-      <div class="sctn sctn--left">
+      <div class="cnt">
+        <h1 class="title">woane.ch</h1>
         <div class="search">
-          <span class="search__label">Suche</span>
-          <input class="search__input"/>
+          <img class="icon icon--left" src="assets/icons/cal.svg" />
+          <input class="search__input" placeholder="Klicke hier, um nach Begriffen zu suchen..." />
+          <a href="results.html"><img class="icon icon--right" src="assets/icons/plus.svg" /></a>
+        </div>
+        <div class="suggestion">
+          <span>Vorschläge aufgrund deiner bisherigen Suchen:</span>
           <div class="tags">
-            <span class="tags__txt">Label</span>
-            <span class="tags__txt">Label</span>
-            <span class="tags__txt">Label</span>
+            <span class="tags__txt">Zürich</span>
+            <span class="tags__txt">Samstag</span>
+            <span class="tags__txt">Electro</span>
           </div>
         </div>
-        <div class="result">
-          <img class="result__img" src="./assets/party1.png" alt="2 YEARS ENDSTATION" />
-          <span class="result__desc">
-            <h3 class="result__title">2 YEARS ENDSTATION</h3>
-            <span class="result__line"><a>Space Monkey</a>, Zürich</span>
-            <span class="result__line">Samstag, 4. April 2020</span>
-            <span class="result__line">10:00 - 22:00 Uhr</span>
-          </span>
-        </div>
-        <div class="result">
-          <img class="result__img" src="./assets/party2.png" alt="2 YEARS ENDSTATION" />
-          <span class="result__desc">
-            <h3 class="result__title">2 YEARS ENDSTATION</h3>
-            <span class="result__line"><a>Space Monkey</a>, Zürich</span>
-            <span class="result__line">Samstag, 4. April 2020</span>
-            <span class="result__line">10:00 - 22:00 Uhr</span>
-          </span>
-        </div>
-        <div class="result">
-          <img class="result__img" src="./assets/party3.png" alt="2 YEARS ENDSTATION" />
-          <span class="result__desc">
-            <h3 class="result__title">2 YEARS ENDSTATION</h3>
-            <span class="result__line"><a>Space Monkey</a>, Zürich</span>
-            <span class="result__line">Samstag, 4. April 2020</span>
-            <span class="result__line">10:00 - 22:00 Uhr</span>
-          </span>
-        </div>
       </div>
-    
-      <div class="sctn sctn--right">
-        <!-- Main content -->Result
-        
-      </div>
-    
     </div>
   </body>
 </html>

@@ -1,0 +1,16 @@
+.cnt {
+  height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 35%;
+}
+
+.title {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 72px;
+  margin: 0;
+}
+
