@@ -3,14 +3,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+  margin: 250px auto;
   width: 35%;
+}
+
+.logo {
+  display: flex;
+}
+
+.logo__img {
+  height: 60px;
+  margin-top: 10px;
+  margin-left: var(--medium);
+  margin-bottom: var(--large);
+  -webkit-animation: rotating 10s linear infinite;
+}
+
+@-webkit-keyframes rotating {
+  from{
+      -webkit-transform: rotate(0deg);
+  }
+  to{
+      -webkit-transform: rotate(360deg);
+  }
 }
 
 .title {
   font-family: 'Source Serif Pro', serif;
   font-size: 72px;
-  margin: 0;
+  margin-top: 0;
 }
 
+.search__input {
+  min-width: 30vw;
+}

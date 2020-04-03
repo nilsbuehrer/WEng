@@ -1,27 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>woane.ch</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="results.css">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&family=Source+Serif+Pro:wght@700&display=swap" rel="stylesheet">
+    <title>woane.ch - Resultate</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="results.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&family=Source+Serif+Pro:wght@700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
       <header class="hdr">
         <div class="social">
-          <img class="social__logo" src="assets/img/facbook.png" />
-          <img class="social__logo" src="assets/img/instagram.png" />
-          <img class="social__logo" src="assets/img/twitter.png" />
+          <a href="https://facebook.com/woane"><img class="social__logo" src="assets/img/facbook.png" /></a>
+          <a href="https://instagram.com/woane"><img class="social__logo" src="assets/img/instagram.png" /></a>
+          <a href="https://twitter.com/woane"><img class="social__logo" src="assets/img/twitter.png" /></a>
         </div>
-        <h1 class="hdr__title">woane.ch</h1>
-        <div>
-          <a>Registrieren</a>
-          <a>Log In</a>
+        <a href="index.html"><h1 class="hdr__title">woane.ch</h1></a>
+        <div class="acc">
+          <a class="acc__item">Registrieren</a>
+          <a class="acc__item acc__item--bold">Login</a>
         </div>
       </header>
-      <div class="sctn sctn--left">
+      <div class="sctn sctn--center">
         <div class="search">
           <img class="icon icon--left" src="assets/icons/cal.svg" />
           <input class="search__input" placeholder="Klicke hier, um nach Begriffen zu suchen..." />
@@ -29,86 +36,85 @@
         </div>
         <div class="tags">
           <span class="tags__txt">
-            Zürich
-            <img class="tags__close" src="assets/icons/close.svg" />
-          </span>
-          <span class="tags__txt">
             Samstag
             <img class="tags__close" src="assets/icons/close.svg" />
           </span>
           <span class="tags__txt">
-            Electro
+            Zürich
+            <img class="tags__close" src="assets/icons/close.svg" />
+          </span>
+          <span class="tags__txt">
+            DJ ZHAW
             <img class="tags__close" src="assets/icons/close.svg" />
           </span>
         </div>
         <div class="suggestion">
           <span>Vorschläge aufgrund deiner bisherigen Suchen:</span>
           <div class="tags">
-            <span class="tags__txt">Zürich</span>
-            <span class="tags__txt">Samstag</span>
+            <span class="tags__txt">Schaffhausen</span>
+            <span class="tags__txt">Freitag</span>
             <span class="tags__txt">Electro</span>
           </div>
         </div>
-        <hr class="line">
-        <div class="result">
-          <img class="result__img" src="assets/img/party1.png" alt="2 YEARS ENDSTATION" />
-          <div class="result__desc">
-            <h3 class="result__title">2 YEARS ENDSTATION</h3>
-            <span class="result__line"><a>Space Monkey</a>, Zürich</span>
-            <span class="result__line">Samstag, 4. April 2020</span>
-            <span class="result__line">10:00 - 22:00 Uhr</span>
+        <hr class="line" />
+        <a class="link" href="results-details.html">
+          <div class="result">
+            <img
+              class="result__img"
+              src="assets/img/party1.png"
+              alt="2 YEARS ENDSTATION"
+            />
+            <div class="result__desc">
+              <h3 class="result__title">2 YEARS ENDSTATION</h3>
+              <span class="result__line">Space Monkey, Zürich</span>
+              <span class="result__line">Samstag, 4. April 2020</span>
+              <span class="result__line">10:00 - 22:00 Uhr</span>
+            </div>
+            <div class="star">
+              <span class="star__count">73</span>
+              <img class="star__icon" src="assets/icons/star_black.svg" />
+            </div>
           </div>
-          <div class="star">
-            <span class="star__count">73</span>
-            <img class="star__icon" src="assets/icons/star_gold.svg" />
+        </a>
+        <a class="link" href="results-details.html">
+          <div class="result">
+            <img
+              class="result__img"
+              src="assets/img/party2.png"
+              alt="2 YEARS ENDSTATION"
+            />
+            <span class="result__desc">
+              <h3 class="result__title">Glitter Gwitter</h3>
+              <span class="result__line">Plaza Klub, Zürich</span>
+              <span class="result__line">Samstag, 4. April 2020</span>
+              <span class="result__line">22:00 - 03:00 Uhr</span>
+            </span>
+            <div class="star">
+              <span class="star__count">125</span>
+              <img class="star__icon" src="assets/icons/star_black.svg" />
+            </div>
           </div>
-        </div>
-        <div class="result">
-          <img class="result__img" src="assets/img/party2.png" alt="2 YEARS ENDSTATION" />
-          <span class="result__desc">
-            <h3 class="result__title">2 YEARS ENDSTATION</h3>
-            <span class="result__line"><a>Space Monkey</a>, Zürich</span>
-            <span class="result__line">Samstag, 4. April 2020</span>
-            <span class="result__line">10:00 - 22:00 Uhr</span>
-          </span>
-          <div class="star">
-            <span class="star__count">73</span>
-            <img class="star__icon" src="assets/icons/star_black.svg" />
+        </a>
+        <a class="link" href="results-details.html">
+          <div class="result">
+            <img
+              class="result__img"
+              src="assets/img/party3.png"
+              alt="Cory Wong"
+            />
+            <span class="result__desc">
+              <h3 class="result__title">Cory Wong</h3>
+              <span class="result__line">Moods, Zürich</span>
+              <span class="result__line">Samstag, 4. April 2020</span>
+              <span class="result__line">20:00 - 23:00 Uhr</span>
+            </span>
+            <div class="star">
+              <span class="star__count">54</span>
+              <img class="star__icon" src="assets/icons/star_black.svg" />
+            </div>
           </div>
-        </div>
-        <div class="result">
-          <img class="result__img" src="assets/img/party3.png" alt="Cory Wong" />
-          <span class="result__desc">
-            <h3 class="result__title">Cory Wong</h3>
-            <span class="result__line"><a>Moods</a>, Zürich</span>
-            <span class="result__line">Samstag, 4. April 2020</span>
-            <span class="result__line">20:00 - 23:00 Uhr</span>
-          </span>
-          <div class="star">
-            <span class="star__count">73</span>
-            <img class="star__icon" src="assets/icons/star_black.svg" />
-          </div>
-        </div>
+        </a>
       </div>
-    
-      <div class="sctn sctn--right">
-        <div class="event__header">
-          <h2 class="event__title">2 YEARS ENDSTATION</h2>
-          <div class="star">
-            <span class="star__count">73</span>
-            <img class="star__icon" src="assets/icons/star_gold.svg" />
-          </div>
-        </div>
-        <div class="event__details">
-          Typ: Party<br/>
-          Musikstil: Tech House<br/>
-          Acts: Alessandro Diruggiero, Workinprogress, Onur<br/>
-          Eintritt: 20.-<br/>
-        </div>
-        <span class="event__desc">Happy birthday Endstation! Die SpaceMonki-Marke für erweitertes Raven kriegt die 2 auf den Rücken. Unter den Gratulanten ist auch Alessandro Diruggiero, der seine Leidenschaft für elektronische Clubmusik als Raver in den Mailänder Clubs entdeckt hat.</span>
-        <button>Tickets kaufen</button>
-      </div>
-    
     </div>
   </body>
 </html>
