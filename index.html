@@ -7,6 +7,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&family=Source+Serif+Pro:wght@700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <header class="hdr">
@@ -33,13 +36,12 @@
         </div>
         <div class="suggestion">
           <span>Vorschläge aufgrund deiner bisherigen Suchen:</span>
-          <div class="tags">
-            <a href="results.html" class="tags__txt">Zürich</a>
-            <a href="results.html" class="tags__txt">Samstag</a>
-            <a href="results.html" class="tags__txt">Electro</a>
+          <div id="suggestedTags" class="tags">
+            <a v-for="suggestedTag in suggestedTags" href="results.html" class="tags__txt">{{ suggestedTag }}</a>
           </div>
         </div>
       </div>
     </div>
+    <script src="suggestedTags.js"></script>
   </body>
 </html>

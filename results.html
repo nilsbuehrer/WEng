@@ -13,14 +13,22 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&family=Source+Serif+Pro:wght@700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div id="results" class="container">
       <header class="hdr">
         <div class="social">
-          <a href="https://facebook.com/woane"><img class="social__logo" src="assets/img/facbook.png" /></a>
-          <a href="https://instagram.com/woane"><img class="social__logo" src="assets/img/instagram.png" /></a>
-          <a href="https://twitter.com/woane"><img class="social__logo" src="assets/img/twitter.png" /></a>
+          <a href="https://facebook.com/woane"
+            ><img class="social__logo" src="assets/img/facbook.png"
+          /></a>
+          <a href="https://instagram.com/woane"
+            ><img class="social__logo" src="assets/img/instagram.png"
+          /></a>
+          <a href="https://twitter.com/woane"
+            ><img class="social__logo" src="assets/img/twitter.png"
+          /></a>
         </div>
         <a href="index.html"><h1 class="hdr__title">woane.ch</h1></a>
         <div class="acc">
@@ -28,93 +36,70 @@
           <a class="acc__item acc__item--bold">Login</a>
         </div>
       </header>
-      <div class="sctn sctn--center">
+      <div class="sctn sctn--left">
         <div class="search">
           <img class="icon icon--left" src="assets/icons/cal.svg" />
-          <input class="search__input" placeholder="Klicke hier, um nach Begriffen zu suchen..." />
+          <input
+            class="search__input"
+            placeholder="Klicke hier, um nach Begriffen zu suchen..."
+          />
           <img class="icon icon--right" src="assets/icons/plus.svg" />
         </div>
-        <div class="tags">
-          <span class="tags__txt">
-            Samstag
-            <img class="tags__close" src="assets/icons/close.svg" />
-          </span>
-          <span class="tags__txt">
-            Zürich
-            <img class="tags__close" src="assets/icons/close.svg" />
-          </span>
-          <span class="tags__txt">
-            DJ ZHAW
-            <img class="tags__close" src="assets/icons/close.svg" />
+        <div id="selectedTags" class="tags">
+          <span v-for="selectedTag in selectedTags" class="tags__txt">
+            {{ selectedTag }}
+            <img v-on:click="removeTag(selectedTag)" class="tags__close" src="assets/icons/close.svg" />
           </span>
         </div>
         <div class="suggestion">
           <span>Vorschläge aufgrund deiner bisherigen Suchen:</span>
-          <div class="tags">
-            <span class="tags__txt">Schaffhausen</span>
-            <span class="tags__txt">Freitag</span>
-            <span class="tags__txt">Electro</span>
+          <div id="suggestedTags" class="tags">
+            <span v-for="suggestedTag in suggestedTags" class="tags__txt"
+              >{{ suggestedTag }}</span
+            >
           </div>
         </div>
         <hr class="line" />
-        <a class="link" href="results-details.html">
-          <div class="result">
-            <img
-              class="result__img"
-              src="assets/img/party1.png"
-              alt="2 YEARS ENDSTATION"
-            />
-            <div class="result__desc">
-              <h3 class="result__title">2 YEARS ENDSTATION</h3>
-              <span class="result__line">Space Monkey, Zürich</span>
-              <span class="result__line">Samstag, 4. April 2020</span>
-              <span class="result__line">10:00 - 22:00 Uhr</span>
-            </div>
-            <div class="star">
-              <span class="star__count">73</span>
-              <img class="star__icon" src="assets/icons/star_black.svg" />
-            </div>
+        <div v-for="result in results" v-on:click="selectEvent(result.eventId)" class="result" v-bind:class="{'result--selected': result === selectedEvent}">
+          <img
+            class="result__img"
+            :src="'assets/img/' + result.image + '.png'"
+            :alt="result.title"
+          />
+          <div class="result__desc">
+            <h3 class="result__title">{{result.title}}</h3>
+            <span class="result__line">{{result.location}}</span>
+            <span class="result__line">{{result.date}}</span>
+            <span class="result__line">{{result.time}}</span>
           </div>
-        </a>
-        <a class="link" href="results-details.html">
-          <div class="result">
-            <img
-              class="result__img"
-              src="assets/img/party2.png"
-              alt="2 YEARS ENDSTATION"
-            />
-            <span class="result__desc">
-              <h3 class="result__title">Glitter Gwitter</h3>
-              <span class="result__line">Plaza Klub, Zürich</span>
-              <span class="result__line">Samstag, 4. April 2020</span>
-              <span class="result__line">22:00 - 03:00 Uhr</span>
-            </span>
-            <div class="star">
-              <span class="star__count">125</span>
-              <img class="star__icon" src="assets/icons/star_black.svg" />
-            </div>
-          </div>
-        </a>
-        <a class="link" href="results-details.html">
-          <div class="result">
-            <img
-              class="result__img"
-              src="assets/img/party3.png"
-              alt="Cory Wong"
-            />
-            <span class="result__desc">
-              <h3 class="result__title">Cory Wong</h3>
-              <span class="result__line">Moods, Zürich</span>
-              <span class="result__line">Samstag, 4. April 2020</span>
-              <span class="result__line">20:00 - 23:00 Uhr</span>
-            </span>
-            <div class="star">
-              <span class="star__count">54</span>
-              <img class="star__icon" src="assets/icons/star_black.svg" />
-            </div>
-          </div>
-        </a>
+          <star :star-count="result.likeCount" event-id="result.eventId"></star>
+        </div>
+      </div>
+      <div class="sctn sctn--right" v-if="selectedEvent">
+        <div class="event__header">
+          <img class="event__img" :src="'assets/img/' + selectedEvent.image + '.png'" :alt="selectedEvent.title" />
+          <h2 class="event__title">{{ selectedEvent.title }}</h2>
+          <star :star-count="selectedEvent.likeCount"></star>
+        </div>
+        <div class="event__details">
+          <strong>Ort:</strong> {{ selectedEvent.location }}<br/>
+          <strong>Datum:</strong> {{ selectedEvent.date }}<br/>
+          <strong>Zeit:</strong> {{ selectedEvent.time }}<br/>
+        </div>
+        <div class="event__details">
+          <strong>Typ:</strong> {{ selectedEvent.type }}<br/>
+          <strong>Musikstil:</strong> {{ selectedEvent.genre }}<br/>
+          <strong>Acts:</strong> <span v-for="act in selectedEvent.acts">{{ act }}, </span><br/>
+          <strong>Eintritt:</strong> {{ selectedEvent.price }}<br/>
+        </div>
+        <span class="event__desc">{{ selectedEvent.description }}</span>
+        <div class="event__media">
+          <a class="btn" v-bind:href="selectedEvent.link">Tickets kaufen</a>
+        </div>
       </div>
     </div>
+    </div>
+    <script src="suggestedTags.js"></script>
+    <script src="results.js"></script>
   </body>
 </html>
