@@ -18,24 +18,7 @@
   </head>
   <body>
     <div id="app" class="container">
-      <header class="hdr">
-        <div class="social">
-          <a href="https://facebook.com/woane"
-            ><img class="social__logo" src="assets/img/facbook.png"
-          /></a>
-          <a href="https://instagram.com/woane"
-            ><img class="social__logo" src="assets/img/instagram.png"
-          /></a>
-          <a href="https://twitter.com/woane"
-            ><img class="social__logo" src="assets/img/twitter.png"
-          /></a>
-        </div>
-        <a href="index.html"><h1 class="hdr__title">woane.ch</h1></a>
-        <div class="acc">
-          <a class="acc__item">Registrieren</a>
-          <a class="acc__item acc__item--bold">Login</a>
-        </div>
-      </header>
+      <navbar :logo="true"></navbar>
       <div class="sctn sctn--left">
         <div class="search">
           <img class="icon icon--left" src="assets/icons/cal.svg" />
@@ -77,6 +60,7 @@
         <div
           v-for="result in results"
           v-on:click="selectEvent(result.eventId)"
+          v-if="selectedTags.length !== 0"
           class="result"
           v-bind:class="{'result--selected': result === selectedEvent}"
         >
@@ -93,7 +77,7 @@
           </div>
           <star :count="result.likeCount" event-id="result.eventId"></star>
         </div>
-        <div v-if="results.length === 0"><span>Es wurden keine Resultate gefunden. Bitte gib oben etwas ein oder wähle aus den vorgeschlagenen Begriffen aus.</span></div>
+        <div v-if="selectedTags.length === 0"><span>Es wurden keine Resultate gefunden. Bitte gib oben etwas ein oder wähle aus den vorgeschlagenen Begriffen aus.</span></div>
       </div>
       <div class="sctn sctn--right" v-if="selectedEvent">
         <div class="event__header">
@@ -123,6 +107,7 @@
       </div>
     </div>
     <script src="app.js"></script>
+    <script src="navbar.js"></script>
     <script src="node_modules/animejs/lib/anime.min.js"></script>
     <script>
       anime({

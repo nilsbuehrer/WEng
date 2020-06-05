@@ -1,43 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>woane.ch</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&family=Source+Serif+Pro:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&family=Source+Serif+Pro:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <header class="hdr">
-      <div class="social">
-        <a href="https://facebook.com/woane"><img class="social__logo" src="assets/img/facbook.png" /></a>
-        <a href="https://instagram.com/woane"><img class="social__logo" src="assets/img/instagram.png" /></a>
-        <a href="https://twitter.com/woane"><img class="social__logo" src="assets/img/twitter.png" /></a>
-      </div>
-      <div class="acc">
-        <a class="acc__item">Registrieren</a>
-        <a class="acc__item acc__item--bold">Login</a>
-      </div>
-    </header>
-    <div id="app" class="cnt">
-      <div class="logo">
-        <h1 class="title">woane</h1>
-        <img class="logo__img" src="assets/logo.png"/>
-      </div>
-      <div>
-        <div class="search">
-          <img class="icon icon--left" src="assets/icons/cal.svg" />
-          <a href="results.html"><input class="search__input" placeholder="Klicke hier, um nach Begriffen zu suchen..." /></a>
-          <a href="results.html"><img class="icon icon--right" src="assets/icons/plus.svg" /></a>
+    <div id="app">
+      <navbar :logo="false"></navbar>
+      <div class="cnt">
+        <div class="logo">
+          <h1 class="title">woane</h1>
+          <img class="logo__img" src="assets/logo.png" />
         </div>
-        <div class="suggestion">
-          <span>Vorschläge aufgrund deiner bisherigen Suchen:</span>
-          <div class="tags">
-            <a v-for="suggestedTag in suggestedTags" href="results.html" class="tags__txt">{{ suggestedTag }}</a>
+        <div>
+          <div class="search">
+            <img class="icon icon--left" src="assets/icons/cal.svg" />
+            <a href="results.html"
+              ><input
+                class="search__input"
+                placeholder="Klicke hier, um nach Begriffen zu suchen..."
+            /></a>
+            <a href="results.html"
+              ><img class="icon icon--right" src="assets/icons/plus.svg"
+            /></a>
+          </div>
+          <div class="suggestion">
+            <span>Vorschläge aufgrund deiner bisherigen Suchen:</span>
+            <div class="tags">
+              <a
+                v-for="suggestedTag in suggestedTags"
+                href="results.html"
+                class="tags__txt"
+                >{{ suggestedTag }}</a
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -46,9 +55,9 @@
     <script src="node_modules/animejs/lib/anime.min.js"></script>
     <script>
       anime({
-        targets: '.logo',
-        rotate: '2turn',
-        duration: 2200
+        targets: ".logo",
+        rotate: "2turn",
+        duration: 2200,
       });
     </script>
   </body>

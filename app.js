@@ -15,7 +15,7 @@ Vue.component("star", {
     </div>
     `,
   methods: {
-    toggleStar: function (eventId) {
+    toggleStar: function () {
 
       if (this.stared) {
         this.starCount--;
@@ -24,7 +24,7 @@ Vue.component("star", {
       }
       this.stared = !this.stared;
 
-      /* axios.post('https://992e9f95-caa1-40d5-9e91-d45672bf48d6.mock.pstmn.io/results/staredEvents', {
+      axios.post('https://992e9f95-caa1-40d5-9e91-d45672bf48d6.mock.pstmn.io/staredEvents', {
         "eventId": this.id,
         "stared": this.stared,
       })
@@ -33,9 +33,38 @@ Vue.component("star", {
       })
       .catch(function (error) {
         console.log(error);
-      }); */
+      });
     },
   }
+});
+
+Vue.component('navbar', {
+  props: ['logo'],
+  data: function () {
+    return {
+      showLogo: this.logo,
+    }
+  },
+  template: `
+  <header class="hdr">
+    <div class="social">
+      <a href="https://facebook.com/woane"
+        ><img class="social__logo" src="assets/img/facbook.png"
+      /></a>
+      <a href="https://instagram.com/woane"
+        ><img class="social__logo" src="assets/img/instagram.png"
+      /></a>
+      <a href="https://twitter.com/woane"
+        ><img class="social__logo" src="assets/img/twitter.png"
+      /></a>
+    </div>
+    <a v-if="this.showLogo" href="index.html"><h1 class="hdr__title">woane.ch</h1></a>
+    <div class="acc">
+      <a class="acc__item">Registrieren</a>
+      <a class="acc__item acc__item--bold">Login</a>
+    </div>
+  </header>
+    `,
 });
 
 var app = new Vue({
@@ -52,61 +81,14 @@ var app = new Vue({
   },
   methods: {
     getResults: function () {
-      /* axios.get("https://992e9f95-caa1-40d5-9e91-d45672bf48d6.mock.pstmn.io/results", {
+      axios.get("https://992e9f95-caa1-40d5-9e91-d45672bf48d6.mock.pstmn.io/results", {
         params: {
-          tags: selectedTags
+          tags: this.selectedTags
         }
       })
       .then((response) => {
         this.results = response.data;
-      }); */
-      this.results = [
-        {
-        eventId: 123,
-        image: "party1",
-        likeCount: 73,
-        title: "2 YEARS ENDSTATION",
-        location: "Space Monkey, Zürich",
-        date: "Samstag, 4. April 2020",
-        time: "10:00 - 22:00 Uhr",
-        type: "Party",
-        genre: "Tech House",
-        acts: ["DJ ZHAW", "Workinprogress", "Onur"],
-        price: "20.-",
-        description: "Happy birthday Endstation! Die SpaceMonki-Marke für erweitertes Raven kriegt die 2 auf den Rücken.",
-        ticketLink: "https://ticketcorner.ch/",
-        },
-        {
-        eventId: 546,
-        image: "party2",
-        likeCount: 125,
-        title: "Glitter Gwitter",
-        location: "Plaza Klub, Zürich",
-        date: "Samstag, 4. April 2020",
-        time: "22:00 - 03:00 Uhr",
-        type: "",
-        genre: "",
-        acts: [],
-        price: "",
-        description: "",
-        ticketLink: "",
-        },
-        {
-        eventId: 789,
-        image: "party3",
-        likeCount: 54,
-        title: "Cory Wong",
-        location: "Moods, Zürich",
-        date: "Samstag, 4. April 2020",
-        time: "20:00 - 23:00 Uhr",
-        type: "Konzert",
-        genre: "Funk",
-        acts: ["Cory Wong"],
-        price: "25.-",
-        description: "",
-        ticketLink: "https://ticketcorner.ch/",
-        },
-        ]
+      });
     },
     selectEvent: function(eventId) {
       this.selectedEvent = this.results.filter(obj => {
@@ -118,6 +100,7 @@ var app = new Vue({
       if (index > -1) {
         this.selectedTags.splice(index, 1);
       }
+      this.getResults();
     },
     addTag: function (tag) {
       if(tag !== "") {
@@ -127,12 +110,9 @@ var app = new Vue({
       this.getResults();
     },
     getSuggestedTags: function () {
-      /* axios.get("https://992e9f95-caa1-40d5-9e91-d45672bf48d6.mock.pstmn.io/suggestedTags").then((response) => {
-        
+      axios.get("https://992e9f95-caa1-40d5-9e91-d45672bf48d6.mock.pstmn.io/suggestedTags").then((response) => {
         this.suggestedTags = response.data;
-        console.log(this.suggestedTags);
-      }); */
-      this.suggestedTags = ["Zürich", "Samstag", "Electro"];
+      });
     }
   },
 });
