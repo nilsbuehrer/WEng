@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div id="results" class="container">
+    <div id="app" class="container">
       <header class="hdr">
         <div class="social">
           <a href="https://facebook.com/woane"
@@ -40,27 +40,46 @@
         <div class="search">
           <img class="icon icon--left" src="assets/icons/cal.svg" />
           <input
+            v-model="tempTag"
+            v-on:keyup.enter="addTag(tempTag)"
             class="search__input"
             placeholder="Klicke hier, um nach Begriffen zu suchen..."
+            autofocus
           />
-          <img class="icon icon--right" src="assets/icons/plus.svg" />
+          <img
+            v-on:click="addTag(tempTag)"
+            class="icon icon--right"
+            src="assets/icons/plus.svg"
+          />
         </div>
-        <div id="selectedTags" class="tags">
+        <div class="tags">
           <span v-for="selectedTag in selectedTags" class="tags__txt">
             {{ selectedTag }}
-            <img v-on:click="removeTag(selectedTag)" class="tags__close" src="assets/icons/close.svg" />
+            <img
+              v-on:click="removeTag(selectedTag)"
+              class="tags__close"
+              src="assets/icons/close.svg"
+            />
           </span>
         </div>
         <div class="suggestion">
           <span>Vorschläge aufgrund deiner bisherigen Suchen:</span>
           <div id="suggestedTags" class="tags">
-            <span v-for="suggestedTag in suggestedTags" class="tags__txt"
+            <span
+              v-on:click="addTag(suggestedTag)"
+              v-for="suggestedTag in suggestedTags"
+              class="tags__txt"
               >{{ suggestedTag }}</span
             >
           </div>
         </div>
         <hr class="line" />
-        <div v-for="result in results" v-on:click="selectEvent(result.eventId)" class="result" v-bind:class="{'result--selected': result === selectedEvent}">
+        <div
+          v-for="result in results"
+          v-on:click="selectEvent(result.eventId)"
+          class="result"
+          v-bind:class="{'result--selected': result === selectedEvent}"
+        >
           <img
             class="result__img"
             :src="'assets/img/' + result.image + '.png'"
@@ -72,25 +91,30 @@
             <span class="result__line">{{result.date}}</span>
             <span class="result__line">{{result.time}}</span>
           </div>
-          <star :star-count="result.likeCount" event-id="result.eventId"></star>
+          <star :count="result.likeCount" event-id="result.eventId"></star>
         </div>
+        <div v-if="results.length === 0"><span>Es wurden keine Resultate gefunden. Bitte gib oben etwas ein oder wähle aus den vorgeschlagenen Begriffen aus.</span></div>
       </div>
       <div class="sctn sctn--right" v-if="selectedEvent">
         <div class="event__header">
-          <img class="event__img" :src="'assets/img/' + selectedEvent.image + '.png'" :alt="selectedEvent.title" />
+          <img
+            class="event__img"
+            :src="'assets/img/' + selectedEvent.image + '.png'"
+            :alt="selectedEvent.title"
+          />
           <h2 class="event__title">{{ selectedEvent.title }}</h2>
-          <star :star-count="selectedEvent.likeCount"></star>
         </div>
         <div class="event__details">
-          <strong>Ort:</strong> {{ selectedEvent.location }}<br/>
-          <strong>Datum:</strong> {{ selectedEvent.date }}<br/>
-          <strong>Zeit:</strong> {{ selectedEvent.time }}<br/>
+          <strong>Ort:</strong> {{ selectedEvent.location }}<br />
+          <strong>Datum:</strong> {{ selectedEvent.date }}<br />
+          <strong>Zeit:</strong> {{ selectedEvent.time }}<br />
         </div>
         <div class="event__details">
-          <strong>Typ:</strong> {{ selectedEvent.type }}<br/>
-          <strong>Musikstil:</strong> {{ selectedEvent.genre }}<br/>
-          <strong>Acts:</strong> <span v-for="act in selectedEvent.acts">{{ act }}, </span><br/>
-          <strong>Eintritt:</strong> {{ selectedEvent.price }}<br/>
+          <strong>Typ:</strong> {{ selectedEvent.type }}<br />
+          <strong>Musikstil:</strong> {{ selectedEvent.genre }}<br />
+          <strong>Acts:</strong>
+          <span v-for="act in selectedEvent.acts">{{ act }}, </span><br />
+          <strong>Eintritt:</strong> {{ selectedEvent.price }}<br />
         </div>
         <span class="event__desc">{{ selectedEvent.description }}</span>
         <div class="event__media">
@@ -98,8 +122,17 @@
         </div>
       </div>
     </div>
-    </div>
-    <script src="suggestedTags.js"></script>
-    <script src="results.js"></script>
+    <script src="app.js"></script>
+    <script src="node_modules/animejs/lib/anime.min.js"></script>
+    <script>
+      anime({
+        targets: '.sctn--left',
+        direction: 'reverse',
+        translateX: 400,
+        translateY: 300,
+        easing: 'easeInOutSine',
+        duration: 200,
+      });
+    </script>
   </body>
 </html>

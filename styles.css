@@ -96,6 +96,7 @@ a {
 .tags {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   margin-top: var(--small);
 }
